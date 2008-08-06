@@ -1,0 +1,7 @@
+h1. mem_form
+
+Originally by "Michael Manfre":http://manfre.net
+
+Released under the GPLv2 licence.
+
+This is a plugin for "Textpattern":http://textpattern.com
