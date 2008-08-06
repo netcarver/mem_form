@@ -759,7 +759,7 @@ function mem_form_file($atts)
 	$accept = (!empty($accept) ? ' accept="'.$accept.'"' : '');
 	
     return '<label for="'.$name.'" class="'.$class.' '.$memRequired.$isError.' '.$name.'">'.htmlspecialchars($label).'</label>'.$break.
-		'<input type="'.($password ? 'password' : 'text').'" id="'.$name.'" class="'.$class.' '.$memRequired.$isError.'" name="'.$name.'" value="'.htmlspecialchars($value).'"'.$size.' />';
+		'<input type="file" id="'.$name.'" class="'.$class.' '.$memRequired.$isError.'" name="'.$name.'" value="'.htmlspecialchars($value).'"'.$size.' />';
 }
 
 function mem_form_textarea($atts, $thing='')
