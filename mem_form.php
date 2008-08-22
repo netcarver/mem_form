@@ -1,8 +1,6 @@
 <?php
 
 $plugin['name'] = 'mem_form';
-# $plugin['allow_html_help'] = 1;
-// $Rev: 99 $ $LastChangedDate: 2008-05-17 11:40:19 +0800 (Sat, 17 May 2008) $
 $plugin['version'] = '0.4.1';
 $plugin['author'] = 'Michael Manfre';
 $plugin['author_uri'] = 'http://manfre.net/';
@@ -1069,8 +1067,11 @@ function mem_form_checkbox($atts)
 		'label'		=> mem_form_gTxt('checkbox'),
 		'name'		=> '',
 		'class'		=> 'memCheckbox',
-		'required'	=> 1
+		'required'	=> 1,
+		'swap'		=> '', # Any non-empty string will cause label.break.checkbox instead of checkbox.break.label.
 	), $atts));
+
+	$swap = !empty($swap);
 
 	if (empty($name)) $name = mem_form_label2name($label);
 
@@ -1100,9 +1101,11 @@ function mem_form_checkbox($atts)
 	$memRequired = $required ? 'memRequired' : '';
 	$class = htmlspecialchars($class);
 
-	return '<input type="checkbox" id="'.$name.'" class="'.$class.' '.$memRequired.$isError.'" name="'.$name.'"'.
-		($value ? ' checked="checked"' : '').' />'.$break.
-		'<label for="'.$name.'" class="'.$class.' '.$memRequired.$isError.' '.$name.'">'.htmlspecialchars($label).'</label>';
+	$label = '<label for="'.$name.'" class="'.$class.' '.$memRequired.$isError.' '.$name.'">'.htmlspecialchars($label).'</label>';
+    $check = '<input type="checkbox" id="'.$name.'" class="'.$class.' '.$memRequired.$isError.'" name="'.$name.'"'.
+      ($value ? ' checked="checked"' : '').' />';
+
+   return ($swap) ? $label.$break.$check : $check.$break.$label;
 }
 
 
